@@ -3,7 +3,7 @@ FROM  ubuntu:12.04
 MAINTAINER Petr Michalec <epcim@apealive.net>
 
 RUN apt-get update
-RUN apt-get install curl git mercurial subversion -y
+RUN apt-get install curl sudo git mercurial subversion -y
 
 RUN curl -L https://www.opscode.com/chef/install.sh | sudo bash -s -- -P chefdk
 RUN locale-gen en_US.UTF-8
