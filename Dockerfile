@@ -1,5 +1,5 @@
 # drone ruby base
-FROM  ubuntu
+FROM  ubuntu:12.04
 MAINTAINER Petr Michalec <epcim@apealive.net>
 
 RUN apt-get update
