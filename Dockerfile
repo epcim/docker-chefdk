@@ -25,7 +25,6 @@ RUN chef gem install kitchen-docker
 # workaround (drone.io has no way yet to modify this image before git clone happens)
 RUN git config --global http.sslverify false
 
-
 VOLUME /var/lib/docker
 CMD ["wrapdocker"]
 
