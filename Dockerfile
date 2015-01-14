@@ -5,7 +5,7 @@ MAINTAINER Petr Michalec <epcim@apealive.net>
 RUN apt-get update
 RUN apt-get install curl sudo git mercurial subversion -y
 
-RUN apt-get install linux-image-generic-lts-raring linux-headers-generic-lts-raring
+RUN apt-get install -y linux-image-generic-lts-raring linux-headers-generic-lts-raring
 RUN curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 
 RUN curl -L https://www.opscode.com/chef/install.sh | sudo bash -s -- -P chefdk
