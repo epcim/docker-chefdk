@@ -1,5 +1,5 @@
 # drone ruby base
-FROM  ubuntu:12.04
+FROM  ubuntu:14.04
 MAINTAINER Petr Michalec <epcim@apealive.net>
 
 RUN apt-get update
@@ -18,8 +18,8 @@ RUN chef gem install kitchen-docker
 
 #workaround (drone.io has no way yet to modify this image before git clone happens)
 RUN git config --global http.sslverify false
-RUN apt-get install linux-image-generic-lts-raring linux-headers-generic-lts-raring
-RUN curl -sSL https://get.docker.com/ubuntu/ | sudo sh
+RUN apt-get install docker.io
+#RUN curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 
 
 VOLUME /var/lib/docker
