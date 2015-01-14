@@ -3,7 +3,7 @@ FROM  ubuntu:14.04
 MAINTAINER Petr Michalec <epcim@apealive.net>
 
 RUN apt-get update
-RUN apt-get install curl sudo git mercurial subversion -y
+RUN apt-get install -y curl sudo git mercurial subversion
 
 RUN curl -L https://www.opscode.com/chef/install.sh | sudo bash -s -- -P chefdk
 RUN locale-gen en_US.UTF-8
@@ -18,7 +18,7 @@ RUN chef gem install kitchen-docker
 
 #workaround (drone.io has no way yet to modify this image before git clone happens)
 RUN git config --global http.sslverify false
-RUN apt-get install docker.io
+RUN apt-get install -y docker.io
 #RUN curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 
 
