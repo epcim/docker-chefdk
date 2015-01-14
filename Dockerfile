@@ -15,6 +15,10 @@ ENV PATH /opt/chefdk/bin:/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/embedded/bin:/u
 RUN echo 'eval "$(chef shell-init bash)"' >> ~/.bash_profile
 RUN chef gem install kitchen-docker
 #RUN chef gem install kitchen-vcenter
+
+#workaround (drone.io has no way yet to modify this image before git clone happens)
+RUN git config --global http.sslverify false
+
 VOLUME /var/lib/docker
 CMD ["wrapdocker"]
 
