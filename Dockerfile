@@ -1,5 +1,5 @@
-# drone ruby base
-FROM jpetazzo/dind  #as of now ubuntu:14.04
+# drone.io/dind image - as of now jpetazoo/dind uses ubuntu:14.04
+FROM jpetazzo/dind  
 MAINTAINER Petr Michalec <epcim@apealive.net>
 
 RUN apt-get update
