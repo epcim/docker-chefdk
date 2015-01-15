@@ -1,27 +1,5 @@
-# drone.io/dind image - as of now jpetazoo/dind uses ubuntu:14.04
-FROM jpetazzo/dind  
+FROM rosstimson/dind-chefdk
 MAINTAINER Petr Michalec <epcim@apealive.net>
-
-RUN apt-get update
-RUN apt-get install -qqy    curl \
-                            sudo \
-                            git \
-                            mercurial \
-                            subversion \
-                            ca-certificates
-                            #docker.io
-
-RUN curl -L https://www.opscode.com/chef/install.sh | sudo bash -s -- -P chefdk
-RUN locale-gen en_US.UTF-8
-
-## from rosstimson/dind-docker-chefdk
-ENV DEBIAN_FRONTEND noninteractive
-ENV PATH /opt/chefdk/bin:/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/embedded/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-# Make Chef DK the primary Ruby/Chef development environment.
-RUN echo 'eval "$(chef shell-init bash)"' >> ~/.bash_profile
-RUN eval "$(chef shell-init bash)"
-RUN chef gem install kitchen-docker
 
 # workaround (drone.io has no way yet to modify this image before git clone happens)
 RUN git config --global http.sslverify false
