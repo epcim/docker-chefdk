@@ -12,7 +12,10 @@ RUN apt-get install -qqy    curl \
                             #docker.io
 
 RUN curl -L https://www.opscode.com/chef/install.sh | sudo bash -s -- -P chefdk
+RUN apt-get -y install locales
+RUN echo 'en_US.UTF-8 UTF-8'>>/etc/locale.gen
 RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
 
 ## from rosstimson/dind-docker-chefdk
 ENV DEBIAN_FRONTEND noninteractive
