@@ -25,6 +25,8 @@ ENV PATH /opt/chefdk/bin:/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/embedded/bin:/u
 RUN echo 'eval "$(chef shell-init bash)"' >> ~/.bash_profile
 RUN eval "$(chef shell-init bash)"
 RUN chef gem install kitchen-docker
+RUN chmod -R 0440 /etc/sudoers
+RUN chmod -R 0440 /etc/sudoers.d
 
 # workaround (drone.io has no way yet to modify this image before git clone happens)
 RUN git config --global http.sslverify false
