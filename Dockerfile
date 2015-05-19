@@ -1,5 +1,5 @@
 # drone.io/dind image - as of now jpetazoo/dind uses ubuntu:14.04
-FROM jpetazzo/dind  
+FROM jpetazzo/dind
 MAINTAINER Petr Michalec <epcim@apealive.net>
 
 RUN apt-get update
@@ -25,6 +25,11 @@ ENV PATH /opt/chefdk/bin:/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/embedded/bin:/u
 RUN echo 'eval "$(chef shell-init bash)"' >> ~/.bash_profile
 RUN eval "$(chef shell-init bash)"
 RUN chef gem install kitchen-docker
+
+# Install drivers to provision against vmware
+RUN vagrant plugin install vagrant-vcenter
+RUN vagrant plugin install vagrant-vcloud
+
 RUN chmod -R 0440 /etc/sudoers
 RUN chmod -R 0440 /etc/sudoers.d
 
