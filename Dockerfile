@@ -24,6 +24,8 @@ ENV PATH /opt/chefdk/bin:/.chefdk/gem/ruby/2.1.0/bin:/opt/chefdk/embedded/bin:/u
 # Make Chef DK the primary Ruby/Chef development environment.
 RUN echo 'eval "$(chef shell-init bash)"' >> ~/.bash_profile
 RUN eval "$(chef shell-init bash)"
+RUN curl -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
+RUN dpkg -i vagrant_1.7.2_x86_64.deb
 RUN chef gem install kitchen-vagrant
 RUN chef gem install kitchen-docker
 
