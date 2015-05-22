@@ -28,11 +28,13 @@ RUN eval "$(chef shell-init bash)"
 
 # VBOX  ########################################
 # COPIED FROM https://registry.hub.docker.com/u/jencryzthers/vboxinsidedocker/dockerfile/
-ENV DEBIAN_FRONTEND noninteractive
+# ENV DEBIAN_FRONTEND noninteractive
 # Install VirtualBox
 RUN wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
 RUN sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" >> /etc/apt/sources.list.d/virtualbox.list'
-RUN sudo apt-get update
+#RUN sudo apt-get update
+#FIXME
+RUN sudo apt-cache search virtualbox
 RUN sudo apt-get install -y virtualbox-4.3
 # Install Virtualbox Extension Pack
 RUN VBOX_VERSION=`dpkg -s virtualbox-4.3 | grep '^Version: ' | sed -e 's/Version: \([0-9\.]*\)\-.*/\1/'` ; \
@@ -40,13 +42,12 @@ RUN VBOX_VERSION=`dpkg -s virtualbox-4.3 | grep '^Version: ' | sed -e 's/Version
     sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-${VBOX_VERSION}.vbox-extpack ; \
     rm Oracle_VM_VirtualBox_Extension_Pack-${VBOX_VERSION}.vbox-extpack
 # The virtualbox driver device must be mounted from host
-VOLUME /dev/vboxdrv
 RUN sudo apt-get install -yq vagrant
 #RUN curl -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
 #RUN dpkg -i vagrant_1.7.2_x86_64.deb
 # VBOX  ########################################
 
-RUN chef gem install kitchen-vagrant
+#RUN chef gem install kitchen-vagrant
 RUN chef gem install kitchen-docker
 
 # Install drivers to provision against vmware
@@ -60,6 +61,8 @@ RUN chmod -R 0440 /etc/sudoers.d
 RUN git config --global http.sslverify false
 
 VOLUME /var/lib/docker
+VOLUME /dev/vboxdrv
+
 CMD ["wrapdocker"]
 
 
