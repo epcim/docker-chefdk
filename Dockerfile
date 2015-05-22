@@ -32,7 +32,7 @@ RUN eval "$(chef shell-init bash)"
 # Install VirtualBox
 RUN wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
 RUN sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" >> /etc/apt/sources.list.d/virtualbox.list'
-#RUN sudo apt-get update
+RUN sudo apt-get update
 #FIXME
 RUN sudo apt-cache search virtualbox
 RUN sudo apt-get install -y virtualbox-4.3
