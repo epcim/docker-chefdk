@@ -47,12 +47,12 @@ RUN sudo apt-get install -yq vagrant
 #RUN dpkg -i vagrant_1.7.2_x86_64.deb
 # VBOX  ########################################
 
-#RUN chef gem install kitchen-vagrant
+#RUN chef gem install kitchen-vagrant   #already in chefdk
 RUN chef gem install kitchen-docker
 
 # Install drivers to provision against vmware
-RUN vagrant plugin install vagrant-vcenter
-RUN vagrant plugin install vagrant-vcloud
+RUN chef gem install vagrant-vcenter
+RUN chef gem install vagrant-vcloud
 
 RUN chmod -R 0440 /etc/sudoers
 RUN chmod -R 0440 /etc/sudoers.d
