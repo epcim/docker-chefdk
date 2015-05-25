@@ -33,7 +33,7 @@ RUN eval "$(chef shell-init bash)"
 
 #FIXME
 RUN sudo apt-cache search virtualbox
-RUN sudo apt-get install linux-headers-$(uname -r)
+RUN sudo apt-get install virtualbox-dkms
 RUN sudo apt-get install virtualbox-4.3
 
 # DEBUG
