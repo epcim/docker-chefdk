@@ -48,6 +48,12 @@ RUN VBOX_VERSION=`dpkg -s virtualbox-4.3 | grep '^Version: ' | sed -e 's/Version
 RUN curl -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
 RUN dpkg -i vagrant_1.7.2_x86_64.deb
 # VBOX  ########################################
+#
+
+# Fix some issues with APT packages.
+# See https://github.com/dotcloud/docker/issues/1024
+RUN dpkg-divert --local --rename --add /sbin/initctl && \
+    ln -sf /bin/true /sbin/initctl
 
 #RUN chef gem install kitchen-vagrant   #already in chefdk
 RUN chef gem install kitchen-docker
