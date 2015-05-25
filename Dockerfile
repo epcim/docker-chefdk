@@ -31,9 +31,7 @@ RUN eval "$(chef shell-init bash)"
 # VBOX  ########################################
 # COPIED FROM https://registry.hub.docker.com/u/jencryzthers/vboxinsidedocker/dockerfile/
 
-#FIXME
-RUN sudo apt-cache search virtualbox
-RUN sudo apt-get install virtualbox-4.3
+RUN sudo apt-get install -yq virtualbox-4.3
 
 # DEBUG
 RUN dpkg -s virtualbox-4.3
